@@ -12,76 +12,77 @@ part of persistent_bottom_nav_bar;
 class PersistentTabView extends PersistentTabViewBase {
   PersistentTabView(this.context,
       {required this.screens,
-      final Key? key,
-      final List<PersistentBottomNavBarItem>? items,
-      this.controller,
-      final double navBarHeight = kBottomNavigationBarHeight,
-      this.margin = EdgeInsets.zero,
-      this.backgroundColor = CupertinoColors.white,
-      final ValueChanged<int>? onItemSelected,
-      final NeumorphicProperties? neumorphicProperties,
-      this.floatingActionButton,
-      final NavBarPadding padding = const NavBarPadding.all(null),
-      final NavBarDecoration decoration = const NavBarDecoration(),
-      this.resizeToAvoidBottomInset = false,
-      this.bottomScreenMargin,
-      this.selectedTabScreenContext,
-      this.hideNavigationBarWhenKeyboardShows = true,
-      final bool popAllScreensOnTapOfSelectedTab = true,
-      final bool popAllScreensOnTapAnyTabs = false,
-      final PopActionScreensType popActionScreens = PopActionScreensType.all,
-      this.confineInSafeArea = true,
-      this.onWillPop,
-      this.stateManagement = true,
-      this.handleAndroidBackButtonPress = true,
-      final ItemAnimationProperties? itemAnimationProperties,
-      this.hideNavigationBar,
-      this.screenTransitionAnimation = const ScreenTransitionAnimation(),
-      final NavBarStyle navBarStyle = NavBarStyle.style1})
+        final Key? key,
+        final List<PersistentBottomNavBarItem>? items,
+        this.controller,
+        final double navBarHeight = kBottomNavigationBarHeight,
+        this.margin = EdgeInsets.zero,
+        this.backgroundColor = CupertinoColors.white,
+        final ValueChanged<int>? onItemSelected,
+        final NeumorphicProperties? neumorphicProperties,
+        this.floatingActionButton,
+        final NavBarPadding padding = const NavBarPadding.all(null),
+        final NavBarDecoration decoration = const NavBarDecoration(),
+        this.resizeToAvoidBottomInset = false,
+        this.bottomScreenMargin,
+        this.selectedTabScreenContext,
+        this.hideNavigationBarWhenKeyboardShows = true,
+        final bool popAllScreensOnTapOfSelectedTab = true,
+        final bool popAllScreensOnTapAnyTabs = false,
+        final PopActionScreensType popActionScreens = PopActionScreensType.all,
+        this.confineInSafeArea = true,
+        this.onWillPop,
+        this.stateManagement = true,
+        this.handleAndroidBackButtonPress = true,
+        final ItemAnimationProperties? itemAnimationProperties,
+        this.hideNavigationBar,
+        this.screenTransitionAnimation = const ScreenTransitionAnimation(),
+        final NavBarStyle navBarStyle = NavBarStyle.style1})
       : assert(items != null,
-            "Items can only be null in case of custom navigation bar style. Please add the items!"),
+  "Items can only be null in case of custom navigation bar style. Please add the items!"),
         assert(assertMidButtonStyles(navBarStyle, items!.length),
-            "NavBar styles 15-18 only accept 3 or 5 PersistentBottomNavBarItem items."),
+        "NavBar styles 15-18 only accept 3 or 5 PersistentBottomNavBarItem items."),
         assert(items!.length == screens.length,
-            "screens and items length should be same. If you are using the onPressed callback function of 'PersistentBottomNavBarItem', enter a dummy screen like Container() in its place in the screens"),
+        "screens and items length should be same. If you are using the onPressed callback function of 'PersistentBottomNavBarItem', enter a dummy screen like Container() in its place in the screens"),
         assert(items!.length >= 2 && items.length <= 6,
-            "NavBar should have at least 2 or maximum 6 items (Except for styles 15-18)"),
-        assert(handleAndroidBackButtonPress && onWillPop == null,
-            "If you declare the onWillPop function, you will have to handle the back function functionality yourself as your onWillPop function will override the default function."),
+        "NavBar should have at least 2 or maximum 6 items (Except for styles 15-18)"),
+        assert(
+        handleAndroidBackButtonPress && onWillPop == null ||
+            !handleAndroidBackButtonPress && onWillPop != null,
+        "If you declare the onWillPop function, you will have to handle the back function functionality yourself as your onWillPop function will override the default function."),
         super(
-          key: key,
-          context: context,
-          screens: screens,
-          controller: controller,
-          margin: margin,
-          items: items,
-          padding: padding,
-          decoration: decoration,
-          hideNavigationBarWhenKeyboardShows:
-              hideNavigationBarWhenKeyboardShows,
-          itemAnimationProperties: itemAnimationProperties,
-          navBarStyle: navBarStyle,
-          popActionScreens: popActionScreens,
-          popAllScreensOnTapOfSelectedTab: popAllScreensOnTapOfSelectedTab,
-          popAllScreensOnTapAnyTabs: popAllScreensOnTapAnyTabs,
-          navBarHeight: navBarHeight,
-          backgroundColor: backgroundColor,
-          onItemSelected: onItemSelected,
-          neumorphicProperties: neumorphicProperties,
-          floatingActionButton: floatingActionButton,
-          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-          bottomScreenMargin: bottomScreenMargin,
-          onWillPop: onWillPop,
-          isCustomWidget: false,
-          confineInSafeArea: confineInSafeArea,
-          stateManagement: stateManagement,
-          handleAndroidBackButtonPress: handleAndroidBackButtonPress,
-          hideNavigationBar: hideNavigationBar,
-          screenTransitionAnimation: screenTransitionAnimation,
-        );
+        key: key,
+        context: context,
+        screens: screens,
+        controller: controller,
+        margin: margin,
+        items: items,
+        padding: padding,
+        decoration: decoration,
+        hideNavigationBarWhenKeyboardShows:
+        hideNavigationBarWhenKeyboardShows,
+        itemAnimationProperties: itemAnimationProperties,
+        navBarStyle: navBarStyle,
+        popActionScreens: popActionScreens,
+        popAllScreensOnTapOfSelectedTab: popAllScreensOnTapOfSelectedTab,
+        popAllScreensOnTapAnyTabs: popAllScreensOnTapAnyTabs,
+        navBarHeight: navBarHeight,
+        backgroundColor: backgroundColor,
+        onItemSelected: onItemSelected,
+        neumorphicProperties: neumorphicProperties,
+        floatingActionButton: floatingActionButton,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        bottomScreenMargin: bottomScreenMargin,
+        onWillPop: onWillPop,
+        isCustomWidget: false,
+        confineInSafeArea: confineInSafeArea,
+        stateManagement: stateManagement,
+        handleAndroidBackButtonPress: handleAndroidBackButtonPress,
+        hideNavigationBar: hideNavigationBar,
+        screenTransitionAnimation: screenTransitionAnimation,
+      );
 
-  const PersistentTabView.custom(
-    this.context, {
+  const PersistentTabView.custom(this.context, {
     required final Widget customWidget,
     required final int itemCount,
     required this.screens,
@@ -95,39 +96,42 @@ class PersistentTabView extends PersistentTabViewBase {
     this.hideNavigationBarWhenKeyboardShows = true,
     this.backgroundColor = CupertinoColors.white,
     final CustomWidgetRouteAndNavigatorSettings routeAndNavigatorSettings =
-        const CustomWidgetRouteAndNavigatorSettings(),
+    const CustomWidgetRouteAndNavigatorSettings(),
     this.confineInSafeArea = true,
     this.onWillPop,
     this.stateManagement = true,
     this.handleAndroidBackButtonPress = true,
     this.hideNavigationBar,
     this.screenTransitionAnimation = const ScreenTransitionAnimation(),
-  })  : assert(itemCount == screens.length,
-            "screens and items length should be same. If you are using the onPressed callback function of 'PersistentBottomNavBarItem', enter a dummy screen like Container() in its place in the screens"),
-        assert(handleAndroidBackButtonPress && onWillPop != null,
-            "If you declare the onWillPop function, you will have to handle the back function functionality yourself as your onWillPop function will override the defualt function."),
+  })
+      : assert(itemCount == screens.length,
+  "screens and items length should be same. If you are using the onPressed callback function of 'PersistentBottomNavBarItem', enter a dummy screen like Container() in its place in the screens"),
+        assert(
+        handleAndroidBackButtonPress && onWillPop == null ||
+            !handleAndroidBackButtonPress && onWillPop != null,
+        "If you declare the onWillPop function, you will have to handle the back function functionality yourself as your onWillPop function will override the defualt function."),
         super(
-          key: key,
-          context: context,
-          screens: screens,
-          controller: controller,
-          margin: margin,
-          routeAndNavigatorSettings: routeAndNavigatorSettings,
-          backgroundColor: backgroundColor,
-          floatingActionButton: floatingActionButton,
-          customWidget: customWidget,
-          itemCount: itemCount,
-          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-          bottomScreenMargin: bottomScreenMargin,
-          onWillPop: onWillPop,
-          confineInSafeArea: confineInSafeArea,
-          stateManagement: stateManagement,
-          handleAndroidBackButtonPress: handleAndroidBackButtonPress,
-          hideNavigationBar: hideNavigationBar,
-          screenTransitionAnimation: screenTransitionAnimation,
-          isCustomWidget: true,
-          decoration: const NavBarDecoration(),
-        );
+        key: key,
+        context: context,
+        screens: screens,
+        controller: controller,
+        margin: margin,
+        routeAndNavigatorSettings: routeAndNavigatorSettings,
+        backgroundColor: backgroundColor,
+        floatingActionButton: floatingActionButton,
+        customWidget: customWidget,
+        itemCount: itemCount,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        bottomScreenMargin: bottomScreenMargin,
+        onWillPop: onWillPop,
+        confineInSafeArea: confineInSafeArea,
+        stateManagement: stateManagement,
+        handleAndroidBackButtonPress: handleAndroidBackButtonPress,
+        hideNavigationBar: hideNavigationBar,
+        screenTransitionAnimation: screenTransitionAnimation,
+        isCustomWidget: true,
+        decoration: const NavBarDecoration(),
+      );
 
   ///Screens that will be displayed on tapping of persistent bottom navigation bar items.
   @override
@@ -380,7 +384,7 @@ class _PersistentTabViewState extends State<PersistentTabView> {
         }
         if (mounted) {
           setState(
-            () => _currentIndex = _controller!.index,
+                () => _currentIndex = _controller!.index,
           );
         }
       }
@@ -394,21 +398,21 @@ class _PersistentTabViewState extends State<PersistentTabView> {
 
   Widget _buildScreen(final int index) {
     final RouteAndNavigatorSettings routeAndNavigatorSettings = widget
-            .isCustomWidget!
+        .isCustomWidget!
         ? RouteAndNavigatorSettings(
-            defaultTitle: widget.routeAndNavigatorSettings!.defaultTitle,
-            initialRoute: widget.routeAndNavigatorSettings!.initialRoute,
-            navigatorKey:
-                widget.routeAndNavigatorSettings!.navigatorKeys == null
-                    ? null
-                    : widget.routeAndNavigatorSettings!
-                        .navigatorKeys![_controller!.index],
-            navigatorObservers:
-                widget.routeAndNavigatorSettings!.navigatorObservers,
-            onGenerateRoute: widget.routeAndNavigatorSettings!.onGenerateRoute,
-            onUnknownRoute: widget.routeAndNavigatorSettings!.onUnknownRoute,
-            routes: widget.routeAndNavigatorSettings!.routes,
-          )
+      defaultTitle: widget.routeAndNavigatorSettings!.defaultTitle,
+      initialRoute: widget.routeAndNavigatorSettings!.initialRoute,
+      navigatorKey:
+      widget.routeAndNavigatorSettings!.navigatorKeys == null
+          ? null
+          : widget.routeAndNavigatorSettings!
+          .navigatorKeys![_controller!.index],
+      navigatorObservers:
+      widget.routeAndNavigatorSettings!.navigatorObservers,
+      onGenerateRoute: widget.routeAndNavigatorSettings!.onGenerateRoute,
+      onUnknownRoute: widget.routeAndNavigatorSettings!.onUnknownRoute,
+      routes: widget.routeAndNavigatorSettings!.routes,
+    )
         : widget.items![index].routeAndNavigatorSettings;
 
     if (widget.floatingActionButton != null) {
@@ -459,13 +463,13 @@ class _PersistentTabViewState extends State<PersistentTabView> {
           else
             Positioned(
               bottom: (_navBarHeight! -
-                      (widget.bottomScreenMargin ??
-                          _navBarHeight! + widget.margin.top))
+                  (widget.bottomScreenMargin ??
+                      _navBarHeight! + widget.margin.top))
                   .abs(),
               child: GestureDetector(
                 onTap: () {
                   if (widget.items![(widget.items!.length / 2).floor()]
-                          .onPressed !=
+                      .onPressed !=
                       null) {
                     widget.items![(widget.items!.length / 2).floor()]
                         .onPressed!(_contextList[_controller!.index]);
@@ -479,18 +483,27 @@ class _PersistentTabViewState extends State<PersistentTabView> {
                         min(
                             widget.navBarHeight!,
                             max(
-                                    widget.decoration!.borderRadius!.topRight.y,
-                                    widget
-                                        .decoration!.borderRadius!.topLeft.y) +
+                                widget.decoration!.borderRadius!.topRight.y,
+                                widget
+                                    .decoration!.borderRadius!.topLeft.y) +
                                 (widget.decoration?.border != null
                                     ? widget
-                                        .decoration!.border!.dimensions.vertical
+                                    .decoration!.border!.dimensions.vertical
                                     : 0.0)),
                     margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width / 2 -
-                            (MediaQuery.of(context).size.width / 5.0 - 30.0) /
+                        left: MediaQuery
+                            .of(context)
+                            .size
+                            .width / 2 -
+                            (MediaQuery
+                                .of(context)
+                                .size
+                                .width / 5.0 - 30.0) /
                                 2),
-                    width: MediaQuery.of(context).size.width / 5.0 - 30.0,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width / 5.0 - 30.0,
                     decoration: const BoxDecoration(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.only(
@@ -525,13 +538,13 @@ class _PersistentTabViewState extends State<PersistentTabView> {
           else
             Positioned(
               bottom: (_navBarHeight! -
-                      (widget.bottomScreenMargin ??
-                          _navBarHeight! + widget.margin.top))
+                  (widget.bottomScreenMargin ??
+                      _navBarHeight! + widget.margin.top))
                   .abs(),
               child: GestureDetector(
                 onTap: () {
                   if (widget.items![(widget.items!.length / 2).floor()]
-                          .onPressed !=
+                      .onPressed !=
                       null) {
                     widget.items![(widget.items!.length / 2).floor()]
                         .onPressed!(_contextList[_controller!.index]);
@@ -545,18 +558,27 @@ class _PersistentTabViewState extends State<PersistentTabView> {
                         min(
                             widget.navBarHeight!,
                             max(
-                                    widget.decoration!.borderRadius!.topRight.y,
-                                    widget
-                                        .decoration!.borderRadius!.topLeft.y) +
+                                widget.decoration!.borderRadius!.topRight.y,
+                                widget
+                                    .decoration!.borderRadius!.topLeft.y) +
                                 (widget.decoration?.border != null
                                     ? widget
-                                        .decoration!.border!.dimensions.vertical
+                                    .decoration!.border!.dimensions.vertical
                                     : 0.0)),
                     margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width / 2 -
-                            (MediaQuery.of(context).size.width / 5.0 - 30.0) /
+                        left: MediaQuery
+                            .of(context)
+                            .size
+                            .width / 2 -
+                            (MediaQuery
+                                .of(context)
+                                .size
+                                .width / 5.0 - 30.0) /
                                 2),
-                    width: MediaQuery.of(context).size.width / 5.0 - 30.0,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width / 5.0 - 30.0,
                     decoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
@@ -580,18 +602,19 @@ class _PersistentTabViewState extends State<PersistentTabView> {
     }
   }
 
-  Widget navigationBarWidget() => PersistentTabScaffold(
+  Widget navigationBarWidget() =>
+      PersistentTabScaffold(
         controller: _controller,
         itemCount:
-            widget.items == null ? widget.itemCount ?? 0 : widget.items!.length,
+        widget.items == null ? widget.itemCount ?? 0 : widget.items!.length,
         bottomScreenMargin:
-            widget.hideNavigationBar != null && widget.hideNavigationBar!
-                ? 0.0
-                : widget.bottomScreenMargin,
+        widget.hideNavigationBar != null && widget.hideNavigationBar!
+            ? 0.0
+            : widget.bottomScreenMargin,
         stateManagement: widget.stateManagement,
         screenTransitionAnimation: widget.screenTransitionAnimation,
         hideNavigationBarWhenKeyboardShows:
-            widget.hideNavigationBarWhenKeyboardShows,
+        widget.hideNavigationBarWhenKeyboardShows,
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
         animatePadding: _isAnimating! || _isCompleted!,
         tabBar: PersistentBottomNavBar(
@@ -605,34 +628,34 @@ class _PersistentTabViewState extends State<PersistentTabView> {
             backgroundColor: widget.backgroundColor,
             navBarHeight: _navBarHeight,
             popScreensOnTapOfSelectedTab:
-                widget.popAllScreensOnTapOfSelectedTab ?? true,
+            widget.popAllScreensOnTapOfSelectedTab ?? true,
             popAllScreensOnTapAnyTabs:
-                widget.popAllScreensOnTapAnyTabs ?? false,
+            widget.popAllScreensOnTapAnyTabs ?? false,
             onItemSelected: widget.onItemSelected != null
                 ? (final index) {
-                    if (_controller!.index != _previousIndex) {
-                      _previousIndex = _controller!.index;
-                    }
-                    if (((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
-                            _previousIndex == index) ||
-                        (widget.popAllScreensOnTapAnyTabs ?? false)) {
-                      popAllScreens();
-                    }
-                    _controller!.index = index;
-                    widget.onItemSelected!(index);
-                  }
+              if (_controller!.index != _previousIndex) {
+                _previousIndex = _controller!.index;
+              }
+              if (((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
+                  _previousIndex == index) ||
+                  (widget.popAllScreensOnTapAnyTabs ?? false)) {
+                popAllScreens();
+              }
+              _controller!.index = index;
+              widget.onItemSelected!(index);
+            }
                 : (final index) {
-                    if (_controller!.index != _previousIndex) {
-                      _previousIndex = _controller!.index;
-                    }
-                    if (((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
-                            _previousIndex == index) ||
-                        (widget.popAllScreensOnTapAnyTabs ?? false)) {
-                      popAllScreens();
-                    }
-                    // popAllScreens();
-                    _controller!.index = index;
-                  },
+              if (_controller!.index != _previousIndex) {
+                _previousIndex = _controller!.index;
+              }
+              if (((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
+                  _previousIndex == index) ||
+                  (widget.popAllScreensOnTapAnyTabs ?? false)) {
+                popAllScreens();
+              }
+              // popAllScreens();
+              _controller!.index = index;
+            },
           ),
           isCustomWidget: widget.isCustomWidget,
           navBarDecoration: widget.decoration,
@@ -655,26 +678,30 @@ class _PersistentTabViewState extends State<PersistentTabView> {
             }
           },
         ),
-        tabBuilder: (final context, final index) => SafeArea(
-          top: false,
-          right: false,
-          left: false,
-          bottom: (widget.items != null &&
-                      widget.items![_controller!.index].opacity < 1.0) ||
+        tabBuilder: (final context, final index) =>
+            SafeArea(
+              top: false,
+              right: false,
+              left: false,
+              bottom: (widget.items != null &&
+                  widget.items![_controller!.index].opacity < 1.0) ||
                   (widget.hideNavigationBar != null && _isCompleted!)
-              ? false
-              : widget.margin.bottom > 0
+                  ? false
+                  : widget.margin.bottom > 0
                   ? false
                   : widget.confineInSafeArea,
-          child: _buildScreen(index),
-        ),
+              child: _buildScreen(index),
+            ),
       );
 
   @override
   Widget build(final BuildContext context) {
     _navBarHeight = (widget.resizeToAvoidBottomInset &&
-            MediaQuery.of(widget.context).viewInsets.bottom > 0 &&
-            widget.hideNavigationBarWhenKeyboardShows)
+        MediaQuery
+            .of(widget.context)
+            .viewInsets
+            .bottom > 0 &&
+        widget.hideNavigationBarWhenKeyboardShows)
         ? 0.0
         : widget.navBarHeight ?? kBottomNavigationBarHeight;
     if (_contextList.length != (widget.itemCount ?? widget.items!.length)) {
@@ -685,39 +712,40 @@ class _PersistentTabViewState extends State<PersistentTabView> {
 
     if (widget.handleAndroidBackButtonPress || widget.onWillPop != null) {
       return WillPopScope(
-        onWillPop: !widget.handleAndroidBackButtonPress &&
-                widget.onWillPop != null
-            ? widget.onWillPop!(_contextList[_controller!.index])
-                as Future<bool> Function()?
+        onWillPop: !widget.handleAndroidBackButtonPress && widget.onWillPop != null
+            ? () async {
+          final result = await widget.onWillPop!(_contextList[_controller!.index]);
+          return Future.value(result);
+        }
             : widget.handleAndroidBackButtonPress && widget.onWillPop != null
-                ? () async {
-                    if (_controller!.index == 0 &&
-                        !Navigator.canPop(_contextList.first!)) {
-                      return widget.onWillPop!(_contextList.first);
-                    } else {
-                      if (Navigator.canPop(_contextList[_controller!.index]!)) {
-                        Navigator.pop(_contextList[_controller!.index]!);
-                      } else {
-                        widget.onItemSelected?.call(0);
-                        _controller!.index = 0;
-                      }
-                      return false;
-                    }
-                  }
-                : () async {
-                    if (_controller!.index == 0 &&
-                        !Navigator.canPop(_contextList.first!)) {
-                      return true;
-                    } else {
-                      if (Navigator.canPop(_contextList[_controller!.index]!)) {
-                        Navigator.pop(_contextList[_controller!.index]!);
-                      } else {
-                        widget.onItemSelected?.call(0);
-                        _controller!.index = 0;
-                      }
-                      return false;
-                    }
-                  },
+            ? () async {
+          if (_controller!.index == 0 &&
+              !Navigator.canPop(_contextList.first!)) {
+            return widget.onWillPop!(_contextList.first);
+          } else {
+            if (Navigator.canPop(_contextList[_controller!.index]!)) {
+              Navigator.pop(_contextList[_controller!.index]!);
+            } else {
+              widget.onItemSelected?.call(0);
+              _controller!.index = 0;
+            }
+            return false;
+          }
+        }
+            : () async {
+          if (_controller!.index == 0 &&
+              !Navigator.canPop(_contextList.first!)) {
+            return true;
+          } else {
+            if (Navigator.canPop(_contextList[_controller!.index]!)) {
+              Navigator.pop(_contextList[_controller!.index]!);
+            } else {
+              widget.onItemSelected?.call(0);
+              _controller!.index = 0;
+            }
+            return false;
+          }
+        },
         child: navigationBarWidget(),
       );
     } else {
@@ -729,8 +757,8 @@ class _PersistentTabViewState extends State<PersistentTabView> {
     if (widget.popAllScreensOnTapOfSelectedTab! ||
         widget.popAllScreensOnTapAnyTabs!) {
       if (widget.items![_controller!.index]
-                  .onSelectedTabPressWhenNoScreensPushed !=
-              null &&
+          .onSelectedTabPressWhenNoScreensPushed !=
+          null &&
           !Navigator.of(_contextList[_controller!.index]!).canPop()) {
         widget.items![_controller!.index]
             .onSelectedTabPressWhenNoScreensPushed!();
@@ -746,10 +774,10 @@ class _PersistentTabViewState extends State<PersistentTabView> {
             _contextList[_controller!.index]!,
             ModalRoute.withName(widget.isCustomWidget!
                 ? (widget.routeAndNavigatorSettings?.initialRoute ??
-                    "/9f580fc5-c252-45d0-af25-9429992db112")
+                "/9f580fc5-c252-45d0-af25-9429992db112")
                 : widget.items![_controller!.index].routeAndNavigatorSettings
-                        .initialRoute ??
-                    "/9f580fc5-c252-45d0-af25-9429992db112"));
+                .initialRoute ??
+                "/9f580fc5-c252-45d0-af25-9429992db112"));
       }
     }
   }
